@@ -10,8 +10,8 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     const draw =  ['noWinner', `It\'s a draw! You and the computer both played ${playerSelection}!`];
-    const loseMessage = ['computerWon', `You lose! ${computerSelection} beats ${playerSelection}!`];
-    const winMessage = ['playerWon', `You win! ${playerSelection} beats ${computerSelection}!`];
+    const loseMessage = ['computerWon', `You lose! ${capitalize(computerSelection)} beats ${playerSelection}!`];
+    const winMessage = ['playerWon', `You win! ${capitalize(playerSelection)} beats ${computerSelection}!`];
     switch (playerSelection) {
         case computerSelection: //if both selections are the same return a message that it's a draw
             return draw;
@@ -36,9 +36,11 @@ function playRound(playerSelection, computerSelection) {
                 case 'paper':
                     return winMessage;
             }
-        default:
-            return 'Something went wrong! Did you type your answer correctly?'
     }
+}
+function capitalize(string) {
+    let lowerCase = string.toLowerCase();
+    return lowerCase.charAt(0).toUpperCase() + lowerCase.slice(1);
 }
 
 function game() {
