@@ -35,6 +35,8 @@ function playRound(playerSelection, computerSelection) {
                     return loseMessage;
                 case 'paper':
                     return winMessage;
+        default: // if player selection is something else
+            return ['error', 'Error! Did you type your selection correctly? Game is over.'];
             }
     }
 }
@@ -62,8 +64,7 @@ function game() {
                 console.log(roundResult[1] + ` Your current score: ${playerScore}, the computer's current score: ${computerScore}`);
                 break;
             default: 
-                return 'Error!!!'
-                break;
+                return roundResult[1];
         } 
         
     }
