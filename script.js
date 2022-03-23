@@ -8,10 +8,14 @@ function computerPlay() {
 
 //Compares the two selections and declares a winner
 function playRound(playerSelection, computerSelection) {
+    if (playerSelection == null || playerSelection == false ) {
+        return ['error', 'Error! Did you type your selection correctly? Game is over.'];
+    }
     playerSelection = playerSelection.toLowerCase();
     const draw =  ['noWinner', `It\'s a draw! You and the computer both played ${playerSelection}!`];
     const loseMessage = ['computerWon', `You lose! ${capitalize(computerSelection)} beats ${playerSelection}!`];
     const winMessage = ['playerWon', `You win! ${capitalize(playerSelection)} beats ${computerSelection}!`];
+    const errorMessage = ['error', 'Error! Did you type your selection correctly? Game is over.'];
     switch (playerSelection) {
         case computerSelection: //if both selections are the same return a message that it's a draw
             return draw;
@@ -35,9 +39,9 @@ function playRound(playerSelection, computerSelection) {
                     return loseMessage;
                 case 'paper':
                     return winMessage;
-        default: // if player selection is something else
-            return ['error', 'Error! Did you type your selection correctly? Game is over.'];
-            }
+            }                 
+        default: // if player selection is something else return an error
+            return errorMessage;
     }
 }
 function capitalize(string) {
@@ -51,7 +55,7 @@ function game() {
     for (let i = 0; i < 5; i++) { //game keeps going for 5 rounds
         let playerSelection = prompt('Please make your selection of either rock, paper or scissors: ', 'rock/paper/scissors'); //game prompts player
         let roundResult = playRound(playerSelection, computerPlay()); //calls the playRound() function, which plays a round of the game and stores who won, and the message in the array roundResult
-        switch (roundResult[0]) { //calls playRound() function to play a round of the game, and checks the result of the game to see who won
+        switch (roundResult[0]) { //checks the result of the game to see who won
             case 'noWinner':
                 console.log(roundResult[1] + ` Your current score: ${playerScore}, the computer's current score: ${computerScore}`);
                 break;
@@ -63,7 +67,7 @@ function game() {
                 playerScore++;
                 console.log(roundResult[1] + ` Your current score: ${playerScore}, the computer's current score: ${computerScore}`);
                 break;
-            default: 
+            case 'error': 
                 return roundResult[1];
         } 
         
