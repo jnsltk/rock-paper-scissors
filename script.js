@@ -12,9 +12,9 @@ function computerPlay() {
 
 //Compares the two selections and declares a winner
 function playRound(playerSelection, computerSelection) {
-    const draw =  ['noWinner', `It\'s a draw! You and the computer both played ${playerSelection}!`];
-    const loseMessage = ['computerWon', `You lose! ${capitalize(computerSelection)} beats ${playerSelection}!`];
-    const winMessage = ['playerWon', `You win! ${capitalize(playerSelection)} beats ${computerSelection}!`];
+    const draw =  ['noWinner', `It\'s a draw! You and the computer both played ${playerSelection}!`, computerSelection, playerSelection];
+    const loseMessage = ['computerWon', `You lose! ${capitalize(computerSelection)} beats ${playerSelection}!`, computerSelection, playerSelection];
+    const winMessage = ['playerWon', `You win! ${capitalize(playerSelection)} beats ${computerSelection}!`, computerSelection, playerSelection];
     switch (playerSelection) {
         case computerSelection: //if both selections are the same return a message that it's a draw
             return draw;
@@ -47,6 +47,7 @@ function capitalize(string) {
 }
 function btnClick(usrSelection) {
     let result = playRound(usrSelection, computerPlay());
+    displayChoices(result[2], result[3]);
     message.textContent = result[1];
     switch (result[0]) {
         case 'playerWon': 
@@ -75,7 +76,6 @@ function endGame() {
     }
     showModal(winner);
 }
-
 function showModal(winner) {
     modal.style.display = 'flex';
     modalText.textContent = `Game over! ${winner} won!`
@@ -86,6 +86,34 @@ function resetGame() {
     computerScore = 0;
     updateScore();
     message.textContent = 'Make your choice!';
+    computerSelectionDisp.textContent = '❔';
+    usrSelectionDisp.textContent = '❔';
+}
+function displayChoices(computerSelection, usrSelection) {
+    switch (computerSelection) {
+        case 'rock':
+            computerSelection = '🪨';
+            break;
+        case 'paper':
+            computerSelection = '📄';
+            break;
+        case 'scissors':
+            computerSelection = '✂️';
+            break;
+    }
+    switch (usrSelection) {
+        case 'rock':
+            usrSelection = '🪨';
+            break;
+        case 'paper':
+            usrSelection = '📄';
+            break;
+        case 'scissors':
+            usrSelection = '✂️';
+            break;
+    }
+    computerSelectionDisp.textContent = computerSelection;
+    usrSelectionDisp.textContent = usrSelection;
 }
 
 //UI
@@ -98,6 +126,8 @@ const computerScorePara = document.querySelector('#computer-score');
 const modal = document.querySelector('.modal');
 const modalText = document.querySelector('.modal-text');
 const playAgainBtn = document.querySelector('.play-again');
+const usrSelectionDisp = document.querySelector('#usrChoice');
+const computerSelectionDisp = document.querySelector('#computerChoice');
 
 rockBtn.addEventListener('click', () => btnClick('rock'));
 paperBtn.addEventListener('click', () => btnClick('paper'));

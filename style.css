@@ -1,6 +1,11 @@
 .button {
     font-size: 48px;
 }
+.choice {
+  display: inline;
+  font-size: 48px;
+  background-color: #333;
+}
 .modal {
     display: none;
     position: fixed;
