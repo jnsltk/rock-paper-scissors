@@ -73,7 +73,15 @@ function endGame() {
     } else {
         winner = 'The computer';
     }
-    alert(`Game over! ${winner} won the game!`)
+    showModal(winner);
+}
+
+function showModal(winner) {
+    modal.style.display = 'flex';
+    modalText.textContent = `Game over! ${winner} won!`
+}
+function resetGame() {
+    modal.style.display = 'none';
     usrScore = 0;
     computerScore = 0;
     updateScore();
@@ -87,7 +95,11 @@ const scissorsBtn = document.querySelector('#scissors');
 const message = document.querySelector('#message');
 const usrScorePara = document.querySelector('#usr-score');
 const computerScorePara = document.querySelector('#computer-score');
+const modal = document.querySelector('.modal');
+const modalText = document.querySelector('.modal-text');
+const playAgainBtn = document.querySelector('.play-again');
 
 rockBtn.addEventListener('click', () => btnClick('rock'));
 paperBtn.addEventListener('click', () => btnClick('paper'));
 scissorsBtn.addEventListener('click', () => btnClick('scissors'));
+playAgainBtn.addEventListener('click', () => resetGame());
