@@ -1,6 +1,7 @@
 //set the scores
 let usrScore = 0;
 let computerScore = 0;
+let winner = '';
 
 
 //function computerPlay returns a random selection of either rock paper or scissors
@@ -55,11 +56,28 @@ function btnClick(usrSelection) {
             computerScore++;
             break;
     }
-    updateScore();
+    updateScore(result[1]);
+    if (isGameOverYet()) endGame();
 }
-function updateScore() {
+function updateScore(msg) {
     usrScorePara.textContent = `You: ${usrScore}`;
     computerScorePara.textContent = `Computer: ${computerScore}`;
+    message.textContent = msg;
+}
+function isGameOverYet() {
+    return (usrScore === 5 || computerScore === 5);
+}
+function endGame() {
+    if (usrScore > computerScore) {
+        winner = 'You';
+    } else {
+        winner = 'The computer';
+    }
+    alert(`Game over! ${winner} won the game!`)
+    usrScore = 0;
+    computerScore = 0;
+    updateScore();
+    message.textContent = 'Make your choice!';
 }
 
 //UI
