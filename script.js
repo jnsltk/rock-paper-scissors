@@ -1,6 +1,5 @@
 
-//Computer makes its own selection
-    //function computerPlay returns a random selection of either rock paper or scissors
+//function computerPlay returns a random selection of either rock paper or scissors
 function computerPlay() {
     const computerSelection = ['rock', 'paper', 'scissors'];
     return computerSelection[Math.floor(Math.random() * computerSelection.length)];
@@ -8,10 +7,6 @@ function computerPlay() {
 
 //Compares the two selections and declares a winner
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection == null || playerSelection == false ) {
-        return ['error', 'Error! Did you type your selection correctly? Game is over.'];
-    }
-    playerSelection = playerSelection.toLowerCase();
     const draw =  ['noWinner', `It\'s a draw! You and the computer both played ${playerSelection}!`];
     const loseMessage = ['computerWon', `You lose! ${capitalize(computerSelection)} beats ${playerSelection}!`];
     const winMessage = ['playerWon', `You win! ${capitalize(playerSelection)} beats ${computerSelection}!`];
@@ -49,36 +44,11 @@ function capitalize(string) {
     return lowerCase.charAt(0).toUpperCase() + lowerCase.slice(1);
 }
 
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++) { //game keeps going for 5 rounds
-        let playerSelection = prompt('Please make your selection of either rock, paper or scissors: ', 'rock/paper/scissors'); //game prompts player
-        let roundResult = playRound(playerSelection, computerPlay()); //calls the playRound() function, which plays a round of the game and stores who won, and the message in the array roundResult
-        switch (roundResult[0]) { //checks the result of the game to see who won
-            case 'noWinner':
-                console.log(roundResult[1] + ` Your current score: ${playerScore}, the computer's current score: ${computerScore}`);
-                break;
-            case 'computerWon':
-                computerScore++;
-                console.log(roundResult[1] + ` Your current score: ${playerScore}, the computer's current score: ${computerScore}`);
-                break;
-            case 'playerWon':
-                playerScore++;
-                console.log(roundResult[1] + ` Your current score: ${playerScore}, the computer's current score: ${computerScore}`);
-                break;
-            case 'error': 
-                return roundResult[1];
-        } 
-        
-    }
-    if (playerScore > computerScore) {
-        return 'Game Over! You win!';
-    } else if (playerScore < computerScore) {
-        return 'Game Over! You lose, better luck next time!';
-    } else {
-        return 'Game Over! It\'s a draw!'
-    }
-    
-}
-console.log(game());
+//UI
+const rockBtn = document.querySelector('#rock');
+const paperBtn = document.querySelector('#paper');
+const scissorsBtn = document.querySelector('#scissors');
+
+rockBtn.addEventListener('click', () => console.log(playRound('rock', computerPlay())));
+paperBtn.addEventListener('click', () => console.log(playRound('paper', computerPlay())));
+scissorsBtn.addEventListener('click', () => console.log(playRound('scissors', computerPlay())));
