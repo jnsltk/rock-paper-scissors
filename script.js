@@ -1,3 +1,7 @@
+//set the scores
+let usrScore = 0;
+let computerScore = 0;
+
 
 //function computerPlay returns a random selection of either rock paper or scissors
 function computerPlay() {
@@ -10,7 +14,6 @@ function playRound(playerSelection, computerSelection) {
     const draw =  ['noWinner', `It\'s a draw! You and the computer both played ${playerSelection}!`];
     const loseMessage = ['computerWon', `You lose! ${capitalize(computerSelection)} beats ${playerSelection}!`];
     const winMessage = ['playerWon', `You win! ${capitalize(playerSelection)} beats ${computerSelection}!`];
-    const errorMessage = ['error', 'Error! Did you type your selection correctly? Game is over.'];
     switch (playerSelection) {
         case computerSelection: //if both selections are the same return a message that it's a draw
             return draw;
@@ -35,20 +38,38 @@ function playRound(playerSelection, computerSelection) {
                 case 'paper':
                     return winMessage;
             }                 
-        default: // if player selection is something else return an error
-            return errorMessage;
     }
 }
 function capitalize(string) {
     let lowerCase = string.toLowerCase();
     return lowerCase.charAt(0).toUpperCase() + lowerCase.slice(1);
 }
+function btnClick(usrSelection) {
+    let result = playRound(usrSelection, computerPlay());
+    message.textContent = result[1];
+    switch (result[0]) {
+        case 'playerWon': 
+            usrScore++;
+            break;
+        case 'computerWon': 
+            computerScore++;
+            break;
+    }
+    updateScore();
+}
+function updateScore() {
+    usrScorePara.textContent = `You: ${usrScore}`;
+    computerScorePara.textContent = `Computer: ${computerScore}`;
+}
 
 //UI
-const rockBtn = document.querySelector('#rock');
+const rockBtn = document.querySelector('#rock')
 const paperBtn = document.querySelector('#paper');
 const scissorsBtn = document.querySelector('#scissors');
+const message = document.querySelector('#message');
+const usrScorePara = document.querySelector('#usr-score');
+const computerScorePara = document.querySelector('#computer-score');
 
-rockBtn.addEventListener('click', () => console.log(playRound('rock', computerPlay())));
-paperBtn.addEventListener('click', () => console.log(playRound('paper', computerPlay())));
-scissorsBtn.addEventListener('click', () => console.log(playRound('scissors', computerPlay())));
+rockBtn.addEventListener('click', () => btnClick('rock'));
+paperBtn.addEventListener('click', () => btnClick('paper'));
+scissorsBtn.addEventListener('click', () => btnClick('scissors'));
