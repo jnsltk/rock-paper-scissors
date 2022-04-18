@@ -12,7 +12,7 @@ function computerPlay() {
 
 //Compares the two selections and declares a winner
 function playRound(playerSelection, computerSelection) {
-    const draw =  ['noWinner', `It\'s a draw! You and the computer both played ${playerSelection}!`, computerSelection, playerSelection];
+    const draw =  ['noWinner', `It\'s a draw! You both played ${playerSelection}!`, computerSelection, playerSelection];
     const loseMessage = ['computerWon', `You lose! ${capitalize(computerSelection)} beats ${playerSelection}!`, computerSelection, playerSelection];
     const winMessage = ['playerWon', `You win! ${capitalize(playerSelection)} beats ${computerSelection}!`, computerSelection, playerSelection];
     switch (playerSelection) {
@@ -86,30 +86,30 @@ function resetGame() {
     computerScore = 0;
     updateScore();
     message.textContent = 'Make your choice!';
-    computerSelectionDisp.textContent = '❔';
-    usrSelectionDisp.textContent = '❔';
+    computerSelectionDisp.textContent = 'The computer\'s choice >>>>>>> ❔';
+    usrSelectionDisp.textContent = 'Your choice >>>>>>> ❔';
 }
 function displayChoices(computerSelection, usrSelection) {
     switch (computerSelection) {
         case 'rock':
-            computerSelection = '🪨';
+            computerSelection = 'The computer\'s choice >>>>>>> 🪨';
             break;
         case 'paper':
-            computerSelection = '📄';
+            computerSelection = 'The computer\'s choice >>>>>>> 📄';
             break;
         case 'scissors':
-            computerSelection = '✂️';
+            computerSelection = 'The computer\'s choice >>>>>>> ✂️';
             break;
     }
     switch (usrSelection) {
         case 'rock':
-            usrSelection = '🪨';
+            usrSelection = 'Your choice >>>>>>> 🪨';
             break;
         case 'paper':
-            usrSelection = '📄';
+            usrSelection = 'Your choice >>>>>>> 📄';
             break;
         case 'scissors':
-            usrSelection = '✂️';
+            usrSelection = 'Your choice >>>>>>> ✂️';
             break;
     }
     computerSelectionDisp.textContent = computerSelection;

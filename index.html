@@ -5,30 +5,38 @@
         <title>Rock paper scissors</title>
         <script src="./script.js" defer></script>
         <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;400;700;900&display=swap" rel="stylesheet">
     </head>
     <body>
         <div class="container">
-            <h1 class="title">Rock, Paper, Scissors</h1>
-            <div class="scores">
-                <div id="usr-score">You: 0</div>
-                <div id="computer-score">Computer: 0</div>
-            </div>
-            <div id="message">Make your choice!</div>
-            <div class="choices">
-                <div id="usrChoice" class="choice">❔</div>
-                <div id="computerChoice" class="choice">❔</div>
+            <div class="header">
+                <h1 class="title">Rock, Paper, Scissors</h1>
+            </div>   
+            <div class="game-area">
+                <div class="inner-game-area">
+                    <h2 id="message">Make your choice!</h2>
+                    <div class="choices">
+                        <div id="usrChoice" class="choice">Your choice >>>>>>> ❔</div>
+                        <div id="computerChoice" class="choice">The computer's choice >>>>>>> ❔</div>
+                    </div>
+                </div>
+                <div class="scores">
+                    <div id="usr-score">You: 0</div>
+                    <div id="computer-score">Computer: 0</div>
+                </div>
             </div>
             <div class="buttons">
                 <button class="button" id="rock">🪨</button>
                 <button class="button" id="paper">📄</button>
                 <button class="button" id="scissors">✂️</button>
             </div>
+            <div class="footer">Made by jnsltk for the Odin Project || Copyright 2022</div>
         </div>
         <div class="modal">
-            <div class="modal-content">
-                <div class="modal-container">
-                  <div class="modal-header">Game Over!</div>
-                  <div class="modal-text">Congratulations! You won!</div>
+                  <h1 class="game-over">Game Over!</h1>
+                  <h2 class0="game-over">Congratulations! You won!</h2>
                   <button class="play-again">Play Again!</button>
                 </div> 
             </div>
